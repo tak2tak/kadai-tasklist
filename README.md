@@ -1,9 +1,14 @@
 # README
 
 タスクリスト
+# 課題2
+tasks テーブルに status カラムを文字列型で追加してください。<br>
+作成と編集ページで status を編集可能にしてください。（ status の input 要素の type 属性は、text でも select でも良いです）<br>
+一覧と詳細ページで status を表示してください。<br>
+status にバリデーションをつけてください。空文字を許さず、10文字以下（未満でも可）を許します。<br>
+GitHub に kadai-tasklist でプッシュしてください。<br>
 
-仕様
-
+# 課題１
 Rails で tasklist アプリを作成してください。　done.<br>
 タスクは、tasks テーブルを作成し、content カラムで構成されます。 done.<br>
 <!---
