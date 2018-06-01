@@ -10,13 +10,53 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180511100151) do
+ActiveRecord::Schema.define(version: 20180601025658) do
+
+  create_table "taskposts", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+    t.string   "content"
+    t.string   "status"
+    t.integer  "user_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["user_id"], name: "index_taskposts_on_user_id", using: :btree
+  end
 
   create_table "tasks", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.string   "content"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.string   "status"
+    t.integer  "user_id"
+    t.index ["user_id"], name: "index_tasks_on_user_id", using: :btree
   end
 
+  create_table "toppages", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+    t.string   "content"
+    t.string   "status"
+    t.integer  "user_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["user_id"], name: "index_toppages_on_user_id", using: :btree
+  end
+
+  create_table "user_tasks", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+    t.string   "content"
+    t.integer  "user_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["user_id"], name: "index_user_tasks_on_user_id", using: :btree
+  end
+
+  create_table "users", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+    t.string   "name"
+    t.string   "email"
+    t.string   "password_digest"
+    t.datetime "created_at",      null: false
+    t.datetime "updated_at",      null: false
+  end
+
+  add_foreign_key "taskposts", "users"
+  add_foreign_key "tasks", "users"
+  add_foreign_key "toppages", "users"
+  add_foreign_key "user_tasks", "users"
 end

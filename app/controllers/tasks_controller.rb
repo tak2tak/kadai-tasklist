@@ -51,8 +51,13 @@ private
 
   def set_task
     @task = Task.find(params[:id])
+    @user = session[:user_id]
   end
 
   def task_params
     params.require(:task).permit(:content, :status)
+  end
+
+  def current_user
+    @task = current.user.task.find_by(id: params[:id])
   end
