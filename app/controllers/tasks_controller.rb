@@ -14,7 +14,7 @@ class TasksController < ApplicationController
   end
 
   def create
-    @task = Task.new(task_params)
+    @task=current_user.tasks.build(task_params)
     
     if @task.save
       flash[:success] = 'タスクが作成されました'
@@ -43,7 +43,7 @@ class TasksController < ApplicationController
     @task.destroy
     
     flash[:success] = 'タスクは削除されました'
-    redirect_to tasks_url
+    redirect_to root_url
   end
 end
 
